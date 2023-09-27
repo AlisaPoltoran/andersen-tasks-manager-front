@@ -6,7 +6,7 @@ const SignUpPage = () => {
   return (
     <div>
       <SignUpForm/>
-      <Link to="/login">Back to login</Link>
+      <Link style={{display: 'flex', justifyContent: 'center'}} to="/login">Back to login</Link>
 
     </div>
   )

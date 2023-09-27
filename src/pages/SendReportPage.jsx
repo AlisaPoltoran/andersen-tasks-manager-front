@@ -6,9 +6,9 @@ import CommonButton from '../components/UI/CommonButton/CommonButton'
 
 const SendReportPage = () => {
   const [tasks, setTasks] = useState([
-        {timeBegin:"01:47",timeEnd:"03:47",job:"Job 1",id:1695836843827},
-        {timeBegin:"01:52",timeEnd:"03:47",job:"Job 2",id:1695836852585},
-        {timeBegin:"01:56",timeEnd:"03:54",job:"Job 3",id:1695836860808}
+    { timeBegin: "01:47", timeEnd: "03:47", job: "Job 1", id: 1695836843827 },
+    { timeBegin: "01:52", timeEnd: "03:47", job: "Job 2", id: 1695836852585 },
+    { timeBegin: "01:56", timeEnd: "03:54", job: "Job 3", id: 1695836860808 }
   ])
 
   const [modal, setModal] = useState(false)
@@ -22,64 +22,63 @@ const SendReportPage = () => {
   }
 
   const sendReport = () => {
-   
-  const myJson = JSON.stringify(
-    { tasks: copiedTasks, user_id: 1 }
+    const myJson = JSON.stringify(
+      { tasks: copiedTasks, user_id: 1 }
+    )
+
+    console.log(myJson)
+    // fetch('url', {
+    //   method: 'POST',
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify(tasks)
+    // }).then(response => {
+    //   console.log(response);
+    // })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
+  }
+
+
+  const copiedTasks = tasks.map(task => {
+    const now = new Date();
+    const year = now.getFullYear();
+    let month = now.getMonth() + 1;
+    let day = now.getDate();
+
+    month = month < 10 ? `0${month}` : month;
+    day = day < 10 ? `0${day}` : day;
+
+    return {
+      ...task,
+      timeBegin: `${year}-${month}-${day} ${task.timeBegin}`,
+      timeEnd: `${year}-${month}-${day} ${task.timeEnd}`
+    };
+  });
+
+  return (
+    <div className='container'>
+      <h1>Add tasks you've done</h1>
+      <CommonModal visible={modal} setVisible={setModal}>
+        <TaskForm create={createTask} />
+      </CommonModal>
+      <TaskList
+        tasks={tasks}
+        remove={removeTask}
+      />
+      <CommonButton style={{ marginTop: 10 }} onClick={() => setModal(true)}>
+        Add task
+      </CommonButton>
+      <hr style={{ margin: '15px 0' }} />
+      <h2>After you added all tasks for today</h2>
+      <CommonButton
+        style={{ marginTop: 15 }}
+        onClick={sendReport}
+      >
+        Send Report
+      </CommonButton>
+    </div>
   )
-
-  console.log(myJson)
-  // fetch('url', {
-  //   method: 'POST',
-  //   headers: { "Content-Type": "application/json" },
-  //   body: JSON.stringify(tasks)
-  // }).then(response => {
-  //   console.log(response);
-  // })
-  //   .catch(error => {
-  //     console.log(error);
-  //   });
-}
-
-
-const copiedTasks = tasks.map(task => {
-  const now = new Date();
-  const year = now.getFullYear();
-  let month = now.getMonth() + 1;
-  let day = now.getDate();
-
-  month = month < 10 ? `0${month}` : month;
-  day = day < 10 ? `0${day}` : day;
-
-  return {
-    ...task,
-    timeBegin: `${year}-${month}-${day} ${task.timeBegin}`,
-    timeEnd: `${year}-${month}-${day} ${task.timeEnd}`
-  };
-});
-
-return (
-  <div className='container'>
-    <h1>Add tasks you've done</h1>
-    <CommonModal visible={modal} setVisible={setModal}>
-      <TaskForm create={createTask} />
-    </CommonModal>
-    <TaskList
-      tasks={tasks}
-      remove={removeTask}
-    />
-    <CommonButton style={{ marginTop: 10 }} onClick={() => setModal(true)}>
-      Add task
-    </CommonButton>
-    <hr style={{ margin: '15px 0' }} />
-    <h2>After you added all tasks for today</h2>
-    <CommonButton
-      style={{ marginTop: 15 }}
-      onClick={sendReport}
-    >
-      Send Report
-    </CommonButton>
-  </div>
-)
 }
 
 export default SendReportPage

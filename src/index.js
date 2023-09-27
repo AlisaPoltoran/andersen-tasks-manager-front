@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
+import { AuthContext } from './context/context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const [isAuth, setIsAuth] = useState(false)
 root.render(
   // <React.StrictMode>
-  <BrowserRouter>
-    <App/>
-  </BrowserRouter>
+  <AuthContext.Provider value={{
+    isAuth, 
+    setIsAuth
+  }}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </AuthContext.Provider>
   // </React.StrictMode>
 );
 
