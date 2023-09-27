@@ -1,35 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import FormInput from '../FormInput/FormInput'
 import CommonButton from '../CommonButton/CommonButton'
 import axios from "axios";
+import { AuthContext } from '../../../context/context'
 
 const LoginForm = () => {
   const [credentials, setCredentials] = useState({ username: '000', password: '000' })
+  const { isAuth, setIsAuth } = useContext(AuthContext)
 
-  async function login(){
-    const myJson = JSON.stringify(
-      { credentials }
-    )
-    
-    const responseJson = axios.post('http://localhost:8080/login', credentials)
+
+  async function login() {
+    axios.post('http://localhost:8080/login', credentials)
       .then(function (response) {
-        console.log(response.data);
+        setIsAuth({status: response.data.id !== 0 ?
+          true : false, user_id: response.data.id})
       })
       .catch(function (error) {
         console.log(error);
       });
-
-    console.log(responseJson.data)
-    // fetch('http://localhost:8080/login', {
-    //   method: 'POST',
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(credentials)
-    // }).then(response => {
-    //   console.log(response);
-    // })
-    //   .catch(error => {
-    //     console.log(error);
-    //   });
   }
 
   return (

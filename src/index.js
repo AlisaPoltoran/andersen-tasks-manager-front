@@ -1,21 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
-import { BrowserRouter } from 'react-router-dom';
-import { AuthContext } from './context/context';
+
+import Proxy from './Proxy';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const [isAuth, setIsAuth] = useState(false)
 root.render(
   // <React.StrictMode>
-  <AuthContext.Provider value={{
-    isAuth, 
-    setIsAuth
-  }}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </AuthContext.Provider>
+  <Proxy/>
   // </React.StrictMode>
 );
 

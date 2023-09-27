@@ -3,12 +3,12 @@ import { privateRoutes, publicRoutes } from '../routes'
 import SendReportPage from './SendReportPage'
 import LoginPage from './LoginPage'
 import SignUpPage from './SignUpPage'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, Navigate } from 'react-router-dom'
 import { AuthContext } from '../context/context'
 
 const RoutesCreator = () => {
-    const {isAuth, setIsAuth} = useContext(AuthContext)
-    console.log(isAuth)
+    const { isAuth, setIsAuth } = useContext(AuthContext)
+    console.log("User logged in " + isAuth.status)
     return (
         // isAuth ?
         //     <Routes>
@@ -24,13 +24,14 @@ const RoutesCreator = () => {
         //                 path={route.path}
         //                 element={route.element} />)}
         //     </Routes>
-        isAuth ?
+        isAuth.status ?
             <Routes>
+                <Route path="/*" element={<Navigate to="/send-report" />} />
                 <Route path="/send-report" element={<SendReportPage />} />
             </Routes>
             :
             <Routes>
-                <Route path="/send-report" element={<SendReportPage />} />
+                <Route path="/*" element={<Navigate to="/login" />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/sign-up" element={<SignUpPage />} />
             </Routes>
