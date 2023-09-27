@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    padding: 20px;
+    width: 880px;
+    margin: 0 auto;
+    /* background-color: bisque; */
+}
+
+.task {
+    display: flex;
+    margin: 12px 15px;
+    width: 80%;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: cornflowerblue;
+}
+
+.task__content {
+    padding: 5px;
+    background-color: tan;
+}
+
+.time__field {
+    width: 25%;
+    border-right: 2px solid black;
+}
+
+.job__field {
+    width: 65%;
+
+}
+
+.task_btns {
+    width: 20%;
+}
+
+.task_btns button {
+    padding: 5px 15px;
+    font-size: 14px;
+    background-color: aliceblue;
+    border: 1px solid black;
+    cursor: pointer;
+}

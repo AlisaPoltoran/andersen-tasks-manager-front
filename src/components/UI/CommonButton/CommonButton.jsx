@@ -1,8 +1,12 @@
 import React from 'react'
+import classes from './CommonButton.module.css'
 
-const CommonButton = () => {
+
+const CommonButton = ({children, ...props}) => {
   return (
-    <div>CommonButton</div>
+      <button {...props} className={classes.commonBtn}>
+          {children}
+      </button>
   )
 }
 
