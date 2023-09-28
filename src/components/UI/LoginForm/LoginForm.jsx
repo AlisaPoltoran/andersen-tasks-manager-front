@@ -5,12 +5,12 @@ import axios from "axios";
 import { AuthContext } from '../../../context/context'
 
 const LoginForm = () => {
-  const [credentials, setCredentials] = useState({ username: '', password: '' })
+  const [credentials, setCredentials] = useState({ name: '', password: '' })
   const { isAuth, setIsAuth } = useContext(AuthContext)
 
 
   async function login() {
-    axios.post('http://localhost:8080/login', credentials)
+    axios.post('http://34.122.170.220:8085/report_sender_war/user', credentials)
       .then(function (response) {
         setIsAuth({status: response.data.id !== 0 ?
           true : false, user_id: response.data.id})
@@ -24,9 +24,9 @@ const LoginForm = () => {
     <div className='container'>
       <h1>Login</h1>
       <FormInput
-        value={credentials.username}
+        value={credentials.name}
         placeholder="login"
-        onChange={e => setCredentials({ ...credentials, username: e.target.value })}
+        onChange={e => setCredentials({ ...credentials, name: e.target.value })}
 
       />
       <FormInput

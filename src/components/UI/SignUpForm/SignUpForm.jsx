@@ -5,14 +5,14 @@ import axios from "axios";
 
 
 const SignUpForm = () => {
-  const [credentials, setCredentials] = useState({username: '', password: ''})
+  const [credentials, setCredentials] = useState({name: '', password: ''})
   
   const signUp = () => {
     const myJson = JSON.stringify(
       {credentials}
     )
     // console.log(myJson)
-    axios.post('http://localhost:8080/sign-up', credentials)
+    axios.post('http://34.122.170.220:8085/report_sender_war/sign-up', credentials)
       .then(function (response) {
         if (response.status === 200) {
           console.log("Account created")
@@ -37,9 +37,9 @@ const SignUpForm = () => {
     <div className='container'>
       <h1>Sign up</h1>
       <FormInput
-        value={credentials.username}
+        value={credentials.name}
         placeholder="login"
-        onChange={e => setCredentials({ ...credentials, username: e.target.value })}
+        onChange={e => setCredentials({ ...credentials, name: e.target.value })}
 
       />
       <FormInput
