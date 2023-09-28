@@ -5,7 +5,7 @@ import axios from "axios";
 import { AuthContext } from '../../../context/context'
 
 const LoginForm = () => {
-  const [credentials, setCredentials] = useState({ username: '000', password: '000' })
+  const [credentials, setCredentials] = useState({ username: '', password: '' })
   const { isAuth, setIsAuth } = useContext(AuthContext)
 
 

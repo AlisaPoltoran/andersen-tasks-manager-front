@@ -5,7 +5,7 @@ import axios from "axios";
 
 
 const SignUpForm = () => {
-  const [credentials, setCredentials] = useState({username: '111', password: '111'})
+  const [credentials, setCredentials] = useState({username: '', password: ''})
   
   const signUp = () => {
     const myJson = JSON.stringify(
