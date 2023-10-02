@@ -12,8 +12,10 @@ const SignUpForm = () => {
       {credentials}
     )
     // console.log(myJson)
-    axios.post('http://34.122.170.220:8085/report_sender_war/sign-up', credentials)
-      .then(function (response) {
+    axios.post('http://34.42.179.248:8085/report_sender_war/sign-up', credentials)
+      // axios.post('http://localhost:8080/report_sender_war/sign-up', credentials)
+
+          .then(function (response) {
         if (response.status === 200) {
           console.log("Account created")
         }

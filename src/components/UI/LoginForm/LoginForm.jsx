@@ -10,8 +10,10 @@ const LoginForm = () => {
 
 
   async function login() {
-    axios.post('http://34.122.170.220:8085/report_sender_war/user', credentials)
-      .then(function (response) {
+    axios.post('http://34.42.179.248:8085/report_sender_war/user', credentials)
+      // axios.post('http://localhost:8080/report_sender_war/user', credentials)
+
+          .then(function (response) {
         setIsAuth({status: response.data.id !== 0 ?
           true : false, user_id: response.data.id})
       })

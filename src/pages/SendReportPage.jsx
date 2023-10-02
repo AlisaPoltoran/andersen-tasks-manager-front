@@ -29,7 +29,9 @@ const SendReportPage = () => {
 
 
   async function sendReport() {
-    axios.post('http://34.122.170.220:8085/report_sender_war/report', { tasks: copiedTasks, user_id: isAuth.user_id })
+    axios.post('http://34.42.179.248/report_sender_war/report', { tasks: copiedTasks, user_id: isAuth.user_id })
+    //   axios.post('http://localhost:8080/report_sender_war/report', { tasks: copiedTasks, user_id: isAuth.user_id })
+
       .then(function (response) {
         setIsAuth({status: false, user_id: 0})
       })
